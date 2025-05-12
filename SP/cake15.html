@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&family=Diphylleia&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init("TQruZTgMwtiQvG-QD"); // Замените на ваш Public Key
+    })();
+  </script>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+        <div class="logo">
+            <img src="logo.png" alt="Sweet Home Logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li>
+                    <a href="#">Каталог</a>
+                    <ul class="dropdown">
+                        <li><a href="trifles.html">Трайфлы</a></li>
+                        <li><a href="cakes.html">Торты</a></li>
+                        <li><a href="cupcakes.html">Капкейки</a></li>
+                    </ul>
+                </li>
+                <li><a href="constructor.html">Конструктор десертов</a></li>
+                <li><a href="delivery.html">Доставка и оплата</a></li>
+                <li><a href="#">Отзывы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+    </header>
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="cake-details">
+            <div class="cake-image">
+                <img src="" alt="Pink Cake" id="cakeImage">
+            </div>
+            <div class="cake-info">
+                <h2 class="cake-name" id="cakeName"></h2>
+                <div class="cake-description" id="cakeDescription"></div>
+                <div class="cake-buttons">
+                    
+                    <button id="orderBtn">Заказать такой же</button>
+                </div>
+            </div>
+        </div>
+                     <!-- The Modal -->
+                    <div id="orderModal" class="modal">
+    
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>Заказать торт</h2>
+                            <form id="orderForm">
+                                <label for="name">Имя:</label>
+                                <input type="text" id="name" name="name" required>
+    
+                                <label for="phone">Контактный телефон:</label>
+                                <input type="text" id="phone" name="phone" required>
+    
+                                <label for="email">Электронная почта:</label>
+                                <input type="text" id="email" name="email" required>
+    
+                                <label for="date">Дата доставки:</label>
+                                <input type="date" id="date" name="date" required>
+    
+                                <label for="location">Место доставки:</label>
+                                <input type="text" id="location" name="location" required>
+    
+                                <label for="comment">Комментарий:</label>
+                                <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+    
+                                <button type="submit">Отправить заказ</button>
+                            </form>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">  <!-- Оборачиваем футер в контейнер -->
+            <div class="contact-info">
+                <img src="phone.png" alt="Телефон">
+                <p>Контакты</p>
+                <p>+7 960 897 45 36</p>
+                <p>vk.com/id135398370</p>
+            </div>
+            <div class="address">
+                <img src="map.png" alt="Адрес">
+                <p>Адрес</p>
+                <p>Ярыгинская набережная, дом 28</p>
+            </div>
+            <div class="hours">
+                <img src="time.png" alt="Время работы">
+                <p>Время работы</p>
+                <p>С 08:00 до 20:00</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { getDessertById, saveOrder } from './data.js';
+      
+        
+        const dessertId = 15;
+      
+        
+        const dessert = getDessertById(dessertId);
+      
+        if (dessert) {
+          
+          document.getElementById('cakeImage').src = dessert.image;
+          document.getElementById('cakeName').innerText = dessert.name;
+          document.getElementById('cakeDescription').innerHTML = `
+            <p>Бисквит: ${dessert.description.biscuit}</p>
+            <p>Крем: ${dessert.description.cream}</p>
+            <p>Наполнение: ${dessert.description.filling}</p>
+            <p>Украшения: ${dessert.description.decoration}</p>
+            <p>Пропитка: ${dessert.description.soaking}</p>
+            <p>Вес: ${dessert.weight} г.</p>
+            <p>Стоимость торта: ${dessert.price} р.</p>
+            <p>Цена (за 1 кг): ${dessert.pricePerKg} р.</p>
+          `;
+      
+          // Modal functionality
+          const modal = document.getElementById('orderModal');
+          const btn = document.getElementById('orderBtn');
+          const span = document.getElementsByClassName('close')[0];
+      
+          btn.onclick = function() {
+            modal.style.display = 'block';
+          }
+          span.onclick = function() {
+            modal.style.display = 'none';
+          }
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = 'none';
+            }
+          }
+      
+          // Обработка формы заказа и отправка через EmailJS
+          document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+      
+            const name = this.name.value;
+            const phone = this.phone.value;
+            const email = this.email.value;
+            const date = this.date.value;
+            const location = this.location.value;
+            const comment = this.comment.value;
+      
+            emailjs.send("service_ot51bkt", "template_6rlbh8b", { // Замените "YOUR_TEMPLATE_ID"
+                dessert_name: dessert.name, // Используем имя десерта из полученных данных
+                dessert_description: document.getElementById('cakeDescription').innerText, // Получаем описание
+                dessert_price: dessert.price, // Используем цену десерта
+                user_name: name,
+                user_email: email,
+                user_phone: phone,
+                user_message: comment // Используем комментарий в качестве сообщения
+              })
+              .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                alert('Заказ отправлен! Мы свяжемся с вами в ближайшее время.');
+                document.getElementById('orderForm').reset();
+                modal.style.display = 'none'; // Закрываем модальное окно после отправки
+              }, function(error) {
+                console.log('FAILED...', error);
+                alert('Ошибка отправки заявки. Пожалуйста, попробуйте позже.');
+              });
+          });
+      
+        } else {
+          // Если десерт с ID не найден, выводим сообщение об ошибке
+          console.error('Десерт с ID не найден.');
+          document.getElementById('cakeName').innerText = "Десерт не найден";
+          document.getElementById('cakeDescription').innerText = "Извините, десерт с указанным ID не найден.";
+        }
+      </script>
+</body>
+</html>

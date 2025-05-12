@@ -1,0 +1,812 @@
+body {
+    margin: 0;
+    font-family: 'Comfortaa', sans-serif;
+    background-color: #F7CBC8;
+    color: #3A3E60;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background-color: #3A3E60;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    height: 10vw;
+    min-height: 50px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+
+.logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+    position: relative; /* Для позиционирования dropdown */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    display: block; /* Чтобы вся область ссылки была кликабельна */
+    padding: 10px;
+}
+
+/* Dropdown menu */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #3A3E60;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 150px; /* Ширина выпадающего меню */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1; /* Чтобы меню было над другими элементами */
+}
+
+.nav-links li:hover .dropdown {
+    display: block;
+}
+
+.dropdown li a {
+    padding: 10px;
+    color: white;
+}
+
+.dropdown li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Небольшой эффект при наведении */
+}
+
+/* Main Content */
+main.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+/* Cake Navigation */
+.cake-navigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.cake-nav-link {
+    color: #3A3E60;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent; /* Изначально нет подчеркивания */
+    transition: border-color 0.3s ease; /* Плавная анимация при наведении */
+}
+
+.cake-nav-link:hover {
+    border-bottom-color: #3A3E60; /* Подчеркивание при наведении */
+}
+
+/* Cake Section */
+.cake-section {
+    margin-bottom: 30px;
+}
+
+.cake-category-title {
+    background-color: #3A3E60;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Cake Grid */
+.cake-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Обертка для cake-item */
+.cake-item-wrapper {
+    width: 30%; /* Три торта в ряд */
+    margin-bottom: 20px;
+    text-align: center; /* Центрируем содержимое */
+}
+
+/* Белый фон и рамка для изображений */
+.cake-image-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Небольшая тень */
+    margin-bottom: 10px; /* Отступ от картинки до названия */
+    display: inline-block; /* Чтобы ширина container была по размеру картинки */
+}
+
+.cake-image-container img {
+    width: 323px;  /* Fixed width */
+    height: 323px; /* Fixed height */
+    object-fit: cover;
+    border-radius: 10px; /* Закругленные углы для изображений */
+    display: block;  /* Убираем лишний отступ под изображением */
+}
+
+/* Hero Section */
+.hero {
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-text {
+    max-width: 500px;
+}
+
+.hero-text h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.hero-image {
+    width: 60%;
+    max-width: 700px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.button {
+    background-color: #3A3E60;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Footer */
+footer {
+    background-color: #3A3E60;
+    color: white;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 100px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.contact-info, .address, .hours {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.contact-info img, .address img, .hours img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    /* filter: invert(1);  Удалите или закомментируйте, если используете белые иконки */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        min-height: 100px;
+    }
+
+     .header-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 400px;
+        margin-top: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .contact-info, .address, .hours {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    main.main-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+        .cake-item-wrapper {
+             width: 45%; /* Два торта в ряд на небольших экранах */
+        }
+}
+/* Delivery Info Section */
+.delivery-info {
+    padding: 30px; /* Добавляем отступы внутри секции */
+}
+
+.delivery-info h1 {
+    font-size: 3.5em; /* Увеличиваем размер заголовка */
+    margin-bottom: 20px; /* Добавляем отступ под заголовком */
+    text-align: left;  /* Выравниваем заголовок по центру */
+}
+
+.delivery-info p {
+    font-size: 1.2em; /* Увеличиваем размер текста */
+    line-height: 1.2; /* Увеличиваем межстрочный интервал для лучшей читаемости */
+    margin-bottom: 15px; /* Добавляем отступ под абзацами */
+}
+
+.delivery-number p{
+    font-size: 1.0em; /* Меньший размер шрифта */
+}
+.contacts-info {
+    padding: 20px;
+}
+
+.contacts-info h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contacts-info p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Contact Details */
+.contact-details {
+    margin-top: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contact-item img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+.contact-item p {
+    font-size: 1.0em; /* Меньший размер шрифта */
+}
+.constructor {
+    padding: 20px;
+}
+
+.constructor h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Dessert Type */
+.dessert-type {
+    margin-bottom: 20px;
+}
+
+.dessert-type label {
+    margin-right: 15px;
+}
+
+/* Constructor Form */
+.constructor-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 20px;
+    border-right: 1px solid #eee;
+}
+
+.right-column .form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Добавляем отступы между элементами */
+}
+
+/* Гарантируем, что поля не будут накладываться */
+#name, #phone, #email, #delivery_date, #location {
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+
+/* Особенно для даты */
+input[type="date"] {
+    height: 45px; /* Фиксированная высота */
+    appearance: none; /* Убираем дефолтные стили */
+    padding-right: 10px; /* Чтобы текст не обрезался */
+}
+
+/* Стили для групп */
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #3A3E60;
+    font-size: 15px;
+}
+
+/* Общие стили для инпутов */
+.form-group select,
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s;
+    background: #f9f9f9;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#image-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.image-preview {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    position: relative;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-preview .remove-image {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+/* Стили для загрузки фото */
+.image-upload {
+    border: 2px dashed #d1d1d1;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    background: #f9f9f9;
+    margin-bottom: 0;
+}
+
+.image-upload p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+#uploaded-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Кнопка заказа */
+.order-button {
+    background: #3A3E60;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.order-button:hover {
+    background: #2a2d45;
+}
+
+/* Радио-кнопки типа десерта */
+.dessert-type {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.dessert-type label {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .constructor-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .left-column {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .constructor-form {
+        flex-direction: column;
+    }
+
+    .form-column {
+        width: 100%;
+    }
+}
+.main-content {
+    padding: 20px;
+}
+
+.cake-details {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cake-image {
+    flex: 1;
+}
+
+.cake-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cake-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.cake-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cake-description {
+    margin-bottom: 20px;
+}
+
+.cake-buttons button {
+    background-color: #3A3E60;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form styling */
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="date"],
+.modal-content textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important:  Include padding and border in the element's total width and height */
+}
+
+.modal-content button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #3A3E60;
+}
+.catalog-btn {
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+    font-size: 16px;
+}
+
+/* Модальное окно каталога */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 900px;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.catalog-item {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.catalog-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.select-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/* Новые стили для конструктора */
+.top-bar {
+    padding: 15px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+}
+
+.select-link {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    padding: 5px}
+    .modal {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed; /* Фиксированное положение */
+  z-index: 1; /* Поверх всего */
+  left: 0;
+  top: 0;
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+  overflow: auto; /* Включает прокрутку, если необходимо */
+  background-color: rgba(0,0,0,0.4); /* Черный с прозрачностью */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% сверху и по центру */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Может быть изменено */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Фиксированное положение */
+    z-index: 1; /* Поверх всего */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    overflow: auto; /* Включает прокрутку, если необходимо */
+    background-color: rgba(0,0,0,0.4); /* Черный с прозрачностью */
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% сверху и по центру */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Может быть изменено */
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #reviews {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.review {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+}

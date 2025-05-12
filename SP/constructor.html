@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&family=Diphylleia&display=swap" rel="stylesheet">
+    <!-- Загружаем EmailJS перед использованием -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            emailjs.init("TQruZTgMwtiQvG-QD");
+        });
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+        <div class="logo">
+            <img src="logo.png" alt="Sweet Home Logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li>
+                    <a href="#">Каталог</a>
+                    <ul class="dropdown">
+                        <li><a href="trifles.html">Трайфлы</a></li>
+                        <li><a href="cakes.html">Торты</a></li>
+                        <li><a href="cupcakes.html">Капкейки</a></li>
+                    </ul>
+                </li>
+                <li><a href="constructor.html">Конструктор десертов</a></li>
+                <li><a href="delivery.html">Доставка и оплата</a></li>
+                <li><a href="#">Отзывы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+    </header>
+    <body>
+        <main class="main-content">
+            <section class="constructor">
+                <h1>Конструктор десертов</h1>
+                <input type="hidden" id="dessertId">
+    
+                <div class="dessert-type">
+                    <label><input type="radio" name="dessert" value="cake" id="cakeType">Торт</label>
+                    <label><input type="radio" name="dessert" value="cupcake" id="cupcakeType">Капкейк</label>
+                    <label><input type="radio" name="dessert" value="trifle" id="trifleType">Трайфл</label>
+                </div>
+    
+                <form class="constructor-form" id="orderForm" enctype="multipart/form-data">
+                    <div class="left-column">
+                        <div class="form-group">
+                            <label for="biscuit">Бисквит:</label>
+                            <select id="biscuit" name="biscuit">
+                                <option value="red-velvet">Красный бархат</option>
+                                <option value="chocolate">Шоколадный</option>
+                                <option value="banana">Банановый</option>
+                                <option value="vanilla">Ванильный</option>
+                                <option value="oreo">Орео шоколадный</option>
+                                <option value="black-forest">Черный лес</option>
+                                <option value="lavender">Лавандовый</option>
+                                <option value="rainbow">Радуга</option>
+                                <option value="milk-girl">Молочная девочка</option>
+                                <option value="raspberry">Малиновый</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="cream">Крем:</label>
+                            <select id="cream" name="cream">
+                                <option value="truffle">Трюфельный</option>
+                                <option value="mascarpone">На основе маскарпоне</option>
+                                <option value="custard">Заварной крем</option>
+                                <option value="cream-cheese">Крем чиз</option>
+                                <option value="chocolate-cream-cheese">Шоколадный крем чиз</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="filling">Наполнение:</label>
+                            <select id="filling" name="filling">
+                                <option value="banana">Банан</option>
+                                <option value="strawberry">Клубника</option>
+                                <option value="berry-layer">Прослойка из ягод</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="decoration">Украшения:</label>
+                            <select id="decoration" name="decoration">
+                                <option value="gingerbread">Пряники</option>
+                                <option value="chocolate-figures">Шоколадные фигурки</option>
+                                <option value="berries">Ягоды</option>
+                                <option value="lollipops">Леденцы</option>
+                                <option value="sugar-paper">Печать на сахарной бумаге</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="comment">Комментарий:</label>
+                            <textarea id="comment" name="comment" rows="4"></textarea>
+                        </div>
+                    </div>
+    
+                    <div>
+                        <label for="image-upload">
+                            <input type="file" id="image-upload" multiple accept="image/*" style="display: none;">
+                            <button type="button" class="button" onclick="document.getElementById('image-upload').click();">Загрузить фото</button>
+                        </label>
+                        <div id="image-preview-container"></div>
+                    </div>
+            
+                    <div>
+                        <button type="submit" class="button">Заказать</button>
+                    </div>
+                        <div class="form-group">
+                            <label for="name">Имя:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Контактный телефон:</label>
+                            <input type="text" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Электронная почта:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="delivery_date">Дата доставки:</label>
+                            <input type="date" id="delivery_date" name="delivery_date" required>
+                        </div>
+                         <div class="form-group">
+                            <label for="location">Место доставки:</label>
+                            <input type="text" id="location" name="location" required>
+                        </div>
+    
+                        <button class="order-button" id="submitOrder" type="submit">Заказать</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Конфигурация
+                const IMGBB_API_KEY = '0206db68000cdc27cbf0bafe3a978310'; // Пожалуйста, защитите этот ключ!
+                const EMAILJS_SERVICE_ID = 'service_ot51bkt';
+                const EMAILJS_TEMPLATE_ID = 'template_ttzdg7q';
+        
+                // Элементы формы
+                const form = document.getElementById('orderForm');
+                const imageUpload = document.getElementById('image-upload');
+                const uploadedImage = document.getElementById('uploaded-image');
+        
+                // Функция для получения текста выбранной опции
+                function getSelectedText(elementId) {
+                    const select = document.getElementById(elementId);
+                    return select.options[select.selectedIndex].text;
+                }
+        
+                // Показ превью фото
+                imageUpload.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (!file) return;
+        
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Фото слишком большое! Максимум 5MB');
+                        this.value = '';
+                        return;
+                    }
+        
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        uploadedImage.src = e.target.result;
+                        uploadedImage.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                });
+        
+                // Отправка формы
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+        
+                    // Проверка обязательных полей
+                    if (!form.name.value || !form.phone.value) {
+                        alert('Пожалуйста, заполните имя и телефон!');
+                        return;
+                    }
+        
+                    try {
+                        // 1. Подготовка данных для шаблона
+                        const orderData = {
+                            user_name: form.name.value,
+                            user_phone: form.phone.value,
+                            user_email: form.email.value || 'Не указан',
+                            dessert_name: document.querySelector('input[name="dessert"]:checked')?.nextSibling.textContent.trim() || 'Не выбран',
+                            biscuit: getSelectedText('biscuit'),
+                            cream: getSelectedText('cream'),
+                            filling: getSelectedText('filling'),
+                            decoration: getSelectedText('decoration'),
+                            delivery_date: document.getElementById('delivery_date').value || 'Не указана',
+                            delivery_address: document.getElementById('location').value || 'Не указан',
+                            user_comment: document.getElementById('comment').value || 'Нет комментариев',
+                            today_date: new Date().toLocaleDateString('ru-RU'),
+                            full_description: `Тип: ${document.querySelector('input[name="dessert"]:checked')?.nextSibling.textContent.trim() || 'Не выбран'}\n` +
+                                            `Бисквит: ${getSelectedText('biscuit')}\n` +
+                                            `Крем: ${getSelectedText('cream')}\n` +
+                                            `Начинка: ${getSelectedText('filling')}\n` +
+                                            `Украшение: ${getSelectedText('decoration')}`
+                        };
+        
+                        // 2. Загрузка изображения (если есть)
+                        let imageUrls = [];
+                        if (filesArray.length > 0) {
+                            for (const file of filesArray) {
+                                const formData = new FormData();
+                                formData.append('image', file);
+            
+        
+                            // Отправка изображения на ImgBB
+                            const imageUploadResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                                method: 'POST',
+                                body: formData
+                            });
+                            const imageUploadData = await imageUploadResponse.json();
+        
+                            if (imageUploadData.success) {
+                                imageUrl = imageUploadData.data.url;
+                                orderData.image_url = imageUrl;
+                            } else {
+                                console.error('Ошибка загрузки изображения:', imageUploadData.error.message);
+                                alert('Ошибка загрузки изображения. Попробуйте еще раз.');
+                                return; // Прекращаем отправку
+                            }
+                            imageUrls.push(imageUrl); // Добавляем URL в массив
+                            }
+                        }
+                        orderData.image_urls = imageUrls;
+        
+                        // 3. Отправка данных через EmailJS
+                        console.log("Отправляемые данные:", orderData);
+                        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, orderData);
+        
+                        alert('Ваш заказ успешно отправлен! Мы свяжемся с вами в ближайшее время.');
+        
+                    } catch (error) {
+                        console.error('Ошибка:', error);
+                        alert('Произошла ошибка! Пожалуйста, позвоните нам: +7 902 981 14 66');
+                    } finally {
+                        // 4. Сброс формы и скрытие превью (выполняется всегда)
+                        form.reset();
+                        uploadedImage.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+ <!--       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Конфигурация
+                const IMGBB_API_KEY = '0206db68000cdc27cbf0bafe3a978310';
+                const EMAILJS_SERVICE_ID = 'service_ot51bkt';
+                const EMAILJS_TEMPLATE_ID = 'template_ttzdg7q';
+        
+                // Элементы формы
+                const form = document.getElementById('orderForm');
+                const imageUpload = document.getElementById('image-upload');
+                const uploadedImage = document.getElementById('uploaded-image');
+        
+                // Функция для получения текста выбранной опции
+                function getSelectedText(elementId) {
+                    const select = document.getElementById(elementId);
+                    return select.options[select.selectedIndex].text;
+                }
+        
+                // Показ превью фото
+                imageUpload.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (!file) return;
+        
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Фото слишком большое! Максимум 5MB');
+                        this.value = '';
+                        return;
+                    }
+        
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        uploadedImage.src = e.target.result;
+                        uploadedImage.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                });
+        
+                // Отправка формы
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+        
+                    // Проверка обязательных полей
+                    if (!form.name.value || !form.phone.value) {
+                        alert('Пожалуйста, заполните имя и телефон!');
+                        return;
+                    }
+        
+                    try {
+                        // 1. Подготовка данных для шаблона
+                        const orderData = {
+                            user_name: form.name.value,
+                            user_phone: form.phone.value,
+                            user_email: form.email.value || 'Не указан',
+                            dessert_name: document.querySelector('input[name="dessert"]:checked')?.nextSibling.textContent.trim() || 'Не выбран',
+                            biscuit: getSelectedText('biscuit'),
+                            cream: getSelectedText('cream'),
+                            filling: getSelectedText('filling'),
+                            decoration: getSelectedText('decoration'),
+                            delivery_date: document.getElementById('delivery_date').value || 'Не указана',
+                            delivery_address: document.getElementById('location').value || 'Не указан',
+                            user_comment: document.getElementById('comment').value || 'Нет комментариев',
+                            today_date: new Date().toLocaleDateString('ru-RU'),
+                            full_description: `Тип: ${document.querySelector('input[name="dessert"]:checked')?.nextSibling.textContent.trim() || 'Не выбран'}\n` +
+                                            `Бисквит: ${getSelectedText('biscuit')}\n` +
+                                            `Крем: ${getSelectedText('cream')}\n` +
+                                            `Начинка: ${getSelectedText('filling')}\n` +
+                                            `Украшение: ${getSelectedText('decoration')}`
+                        };
+        
+                        // 2. Загрузка изображения (если есть)
+                        let imageUrl = null;
+                        if (imageUpload.files[0]) {
+                            const formData = new FormData();
+                            formData.append('image', imageUpload.files[0]);
+                            
+                            const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                                method: 'POST',
+                                body: formData
+                            });
+                            
+                            const imgbbData = await imgbbResponse.json();
+                            imageUrl = imgbbData.data.url;
+                            orderData.image_url = imageUrl;
+                        }
+        
+                        // 3. Отправка через EmailJS
+                        console.log("Отправляемые данные:", orderData); // Для отладки
+                        
+                        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, orderData);
+                        alert('Ваш заказ успешно отправлен! Мы свяжемся с вами в ближайшее время.');
+        
+                        // 4. Сброс формы
+                        form.reset();
+                        uploadedImage.style.display = 'none';
+        
+                    } catch (error) {
+                        console.error('Ошибка:', error);
+                        alert('Произошла ошибка! Пожалуйста, позвоните нам: +7 902 981 14 66');
+                    }
+                });
+            });
+        </script>
+-->
+        <footer>
+            <div class="footer-container">  <!-- Оборачиваем футер в контейнер -->
+                <div class="contact-info">
+                    <img src="phone.png" alt="Телефон">
+                    <p>Контакты</p>
+                    <p>+7 902 981 14 66</p>
+                    <p>vk.com/id135398370</p>
+                </div>
+                <div class="address">
+                    <img src="map.png" alt="Адрес">
+                    <p>Адрес</p>
+                    <p>Судостроительная 171</p>
+                </div>
+                <div class="hours">
+                    <img src="time.png" alt="Время работы">
+                    <p>Время работы</p>
+                    <p>С 08:00 до 20:00</p>
+                </div>
+            </div>
+        </footer>
+
+</body>
+</html>
